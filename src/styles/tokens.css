@@ -1,0 +1,21 @@
+:root {
+  --background: #020617;
+  --background-elevated: #0f172a;
+  --surface: rgba(15, 23, 42, 0.82);
+  --surface-strong: rgba(30, 41, 59, 0.92);
+  --border-neutral: rgba(148, 163, 184, 0.16);
+  --border-active: rgba(34, 211, 238, 0.56);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-cyan: #22d3ee;
+  --accent-violet: #8b5cf6;
+  --status-gap: #ef4444;
+  --status-review: #eab308;
+  --status-mastered: #22c55e;
+  --status-locked: #64748b;
+  --radius-panel: 16px;
+  --radius-control: 10px;
+  color-scheme: dark;
+}
+
