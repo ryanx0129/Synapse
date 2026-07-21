@@ -1,0 +1,11 @@
+TRAINING NEURAL NETWORKS - SHORT PASTE-TEXT FALLBACK
+
+A loss function measures the difference between a model's predictions and its targets. The gradient contains partial derivatives of the loss with respect to parameters. Gradient descent updates parameters in the direction opposite the gradient, while the learning rate controls update size.
+
+A neural network is a composition of operations. The chain rule differentiates composed functions. A computational graph records the operations and their dependencies. Backpropagation traverses this graph backward and combines local derivatives to compute gradients for every weight. Backpropagation computes gradients; gradient descent uses those gradients to update parameters.
+
+Vanishing gradients occur when derivatives smaller than one are repeatedly multiplied across many layers. The resulting gradient reaching early layers can become extremely small. A learner who does not understand vanishing gradients may need to review composed functions, the chain rule, computational graphs, and backpropagation.
+
+Overfitting occurs when a model fits training-specific noise and performs poorly on unseen data. Regularization discourages unnecessary complexity. A train/validation/test split separates parameter fitting, model selection, and final evaluation. Data leakage occurs when information from validation or test data influences training or preprocessing.
+
+A confusion matrix contains true positives, false positives, true negatives, and false negatives. Precision is TP divided by TP plus FP. Recall is TP divided by TP plus FN. Cross-validation evaluates models across multiple train-validation partitions, while a final test set should remain untouched.
