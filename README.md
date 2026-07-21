@@ -50,6 +50,20 @@ The graph is not decoration around a summary. It is the shared structure used fo
 | **Local persistence**          | Stores validated graphs, learner state, attempts, view, filters, and reduced-motion preference in IndexedDB through Dexie, with an in-memory fallback.                |
 | **Deterministic resilience**   | Curated presets, local graph generation, and a transparent local rubric scorer keep the core loop usable without credentials or when AI is unavailable.               |
 
+## Technology stack
+
+| Layer                           | Technologies                                                                                              |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Application foundation**      | React 19, TypeScript 6 in strict mode, Vite 8, and Tailwind CSS 4                                         |
+| **Knowledge graph rendering**   | React Flow (`@xyflow/react`) for 2D, `react-force-graph-3d` and Three.js for 3D                           |
+| **State and local persistence** | Zustand for application state; Dexie and IndexedDB for validated local persistence                        |
+| **Documents and notation**      | PDF.js for local text extraction and KaTeX for mathematical notation                                      |
+| **AI and server boundaries**    | OpenAI JavaScript SDK and Responses API through local Vercel Functions, with Zod validation at boundaries |
+| **Interface utilities**         | Lucide icons and `canvas-confetti`                                                                        |
+| **Testing and code quality**    | Vitest, Testing Library, Playwright, ESLint, Prettier, and TypeScript strict checks                       |
+
+The complete deterministic study loop runs locally without an API key. GPT-5.6 is the configurable default for the optional server-side AI routes and has not been represented as a required or live-verified dependency.
+
 ## Visual walkthrough
 
 The application has been visually checked at desktop and mobile widths, but public README screenshots are not yet committed. The exact capture states, filenames, dimensions, and accessibility requirements are documented in [the README asset checklist](docs/assets/README_ASSET_CHECKLIST.md).
