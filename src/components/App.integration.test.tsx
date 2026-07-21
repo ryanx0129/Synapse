@@ -22,6 +22,7 @@ describe("preset study loop", () => {
     await user.type(search, "Backpropagation");
     await user.click(within(screen.getByRole("list", { name: "Concept search results" })).getByRole("button"));
     expect(screen.getByRole("heading", { name: "Backpropagation" })).toBeInTheDocument();
+    expect(document.querySelector(".formula-card .mfrac, .formula-card .frac-line")).not.toBeNull();
     await user.click(screen.getByRole("button", { name: /3D Galaxy/i }));
     expect(screen.getByRole("heading", { name: "Backpropagation" })).toBeInTheDocument();
   });

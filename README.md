@@ -64,7 +64,7 @@ npm run build
 npm run test:e2e
 ```
 
-See [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for the exact observed results and any unverified acceptance criteria.
+See [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for exact command results, browser evidence, and explicitly deferred release work.
 
 ## Architecture
 
@@ -124,7 +124,7 @@ The frontend can also be hosted statically, but GPT routes will be unavailable a
 
 ## Screenshots
 
-Production screenshots should be captured after the browser acceptance flow passes at desktop and mobile widths. The build environment generated a high-fidelity visual concept, but its local-server policy prevented a final implementation screenshot; this is recorded in `docs/BUILD_STATUS.md` rather than represented as completed evidence.
+The implementation was visually verified at 1280×720 and 390×844 after the browser acceptance flow passed. Those QA captures were intentionally kept outside the repository; capture fresh production screenshots after deployment for the Devpost gallery.
 
 ## Third-party acknowledgments
 
@@ -133,4 +133,3 @@ Synapse uses React, Vite, Tailwind CSS, React Flow, react-force-graph-3d, Three.
 ## License
 
 MIT. See [LICENSE](LICENSE).
-

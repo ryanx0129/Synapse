@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { BlockMath } from "react-katex";
+import katex from "katex";
 import "katex/dist/katex.min.css";
 import {
   ArrowDownRight,
@@ -73,6 +73,18 @@ export function InspectorDrawer() {
   const mastery = learner?.masteryProbability ?? concept.initialMastery;
   const status = learner?.status ?? "review";
   const cluster = state.graph.clusters.find((item) => item.id === concept.cluster);
+  let renderedFormula: string | null = null;
+  if (concept.latex) {
+    try {
+      renderedFormula = katex.renderToString(concept.latex, {
+        displayMode: true,
+        throwOnError: true,
+        trust: false,
+      });
+    } catch {
+      renderedFormula = null;
+    }
+  }
 
   return (
     <aside className="inspector" aria-label={`${concept.label} inspector`}>
@@ -99,7 +111,11 @@ export function InspectorDrawer() {
 
         {concept.latex && (
           <section className="formula-card" aria-label="Formula">
-            <BlockMath math={concept.latex} errorColor="#ef4444" />
+            {renderedFormula ? (
+              <div dangerouslySetInnerHTML={{ __html: renderedFormula }} />
+            ) : (
+              <code>{concept.latex}</code>
+            )}
           </section>
         )}
 

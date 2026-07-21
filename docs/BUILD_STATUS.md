@@ -4,7 +4,7 @@ Last updated: 2026-07-21 (Asia/Taipei)
 
 ## Completion statement
 
-The production implementation and all non-browser automated checks are passing. The project is **not claimed fully complete** because the required Playwright rerun and final desktop/mobile browser screenshot pass could not be executed after the last persistence fix: the managed environment exhausted its approval/escalation allowance and could no longer bind the local development server.
+The required deterministic/no-key product path is implemented and verified. All five required repository commands pass, including the Playwright judged-learning flow with real text-PDF extraction. The final code state was also inspected in the in-app Chromium browser at desktop and mobile widths. Optional live-provider, public-deployment, and release-asset work is explicitly listed below rather than treated as complete.
 
 ## Implemented requirements
 
@@ -54,40 +54,40 @@ The production implementation and all non-browser automated checks are passing. 
 | `npm install …` | Succeeded. 614 packages audited during install; npm reported 30 transitive findings (1 low, 10 moderate, 18 high, 1 critical), primarily in the full development tree. No automatic audit fix was applied. |
 | `npm run lint` | **Passed**, zero errors and warnings on the final run. |
 | `npm run typecheck` | **Passed**, zero TypeScript errors on the final run. |
-| `npm run test` | **Passed**: 8 files, 23 tests. Includes schemas, normalization, mastery, thresholds, risk, repair, scoring, ingestion, serialization, UI flow, and server fallbacks. |
-| `npm run build` | **Passed** with Vite 8.1.5. The 3D chunk is lazy but Vite reports large-chunk warnings: main 892.32 kB and lazy 3D 1,368.67 kB before gzip. |
-| `npm run test:e2e` | First sandboxed attempt could not bind `127.0.0.1:4173` (`EPERM`). Approved browser run then exercised the flow but failed at learner-state restoration after reload. The strict-storage hydration bug was fixed. The mandatory rerun was rejected because the environment’s escalation usage allowance was exhausted, so final E2E status is **unverified**, not passed. |
+| `npm run test` | **Passed**: 8 files, 23 tests in 3.01 s. Includes schemas, normalization, mastery, thresholds, risk, repair, scoring, ingestion, serialization, KaTeX rendering, UI flow, and server fallbacks. |
+| `npm run build` | **Passed** with Vite 8.1.5 in 319 ms. The 3D chunk is lazy but Vite reports large-chunk warnings: main 887.70 kB and lazy 3D 1,369.35 kB before gzip. |
+| `npm run test:e2e` | **Passed**: 1 Chromium test in 2.2 s (1.8 s test time). It covers judged recall, mastery, renderer synchronization, repair, reload persistence, deterministic pasted text, a generated valid text PDF, and simulated provider outage recovery. |
+| Built-asset secret scan | **Passed**: no OpenAI-key-shaped value or `OPENAI_API_KEY` identifier found in built JavaScript. |
 
 ## Browser verification results
 
 Flow under test: preset opens → 2D selection → Backpropagation source/formula → correct chain-rule answer → mastered state → 3D/2D preservation → Vanishing Gradients Repair Path → reload persistence → deterministic text graph → simulated API outage.
 
-Observed in the approved Chromium run before the persistence fix:
+Observed against the final code state:
 
 - Machine Learning preset and curated-mode indicator rendered.
-- 2D view, search, Backpropagation selection, formula, page-12 citation, and source excerpt rendered.
+- 2D and lazy 3D views rendered from the same graph; selection persisted between them.
+- Search, Backpropagation selection, a structurally rendered KaTeX fraction, page-12 citation, and source excerpt rendered.
 - A correct chain-rule answer produced correct feedback and a mastered semantic status.
-- Switching 2D → 3D → 2D preserved inspector selection.
 - Vanishing Gradients produced an actionable Repair Path.
-- Reload exposed the now-fixed strict Zod hydration bug.
+- Reload restored learner mastery through strict Zod-validated persistence.
+- Local text and real one-page text-PDF ingestion both produced deterministic, source-grounded graphs.
+- A simulated 503 kept the current graph intact and displayed an actionable degraded-mode notice.
+- The Playwright run rejected unexpected console errors; the simulated 503 network diagnostic and environment-specific WebGL warnings are the only allow-listed messages.
+- Desktop was visually inspected at 1280×720. Mobile was inspected at 390×844 with zero horizontal document overflow; the inspector became a bottom sheet at 219 px from the top and preserved the rendered formula and relationship controls.
+- Final desktop and mobile QA captures were inspected at original resolution and intentionally kept outside the repository as verification artifacts.
 
-After the fix, the in-app Browser was selected as required, but navigation returned `ERR_CONNECTION_REFUSED` because the local server could not be started under the exhausted escalation allowance. Therefore these remain unverified after the final code state:
-
-- full judged Playwright flow;
-- console/network health through the final degraded-mode step;
-- desktop screenshot comparison to the generated visual concept;
-- mobile-width interaction and drawer behavior;
-- browser-level reduced-motion and fresh/restored-storage passes.
+The generated image concept informed five concrete checks: top-level hierarchy, left-rail filters/actions, graph-to-inspector balance, source-card prominence, and cyan/violet status styling. The implementation intentionally keeps its own documented product structure, responsive bottom sheet, and live canonical renderers rather than treating the generated concept as a replacement specification.
 
 ## Known limitations
 
-- Browser/E2E rerun is required before claiming all acceptance criteria complete.
 - The force-graph and React Flow bundles are necessarily substantial; 3D is lazy-loaded, but bundle-size warnings remain.
 - Deterministic text extraction uses conservative source order to propose prerequisite links and labels the result accordingly.
 - PDF support is text-only; scanned documents receive an actionable paste-OCR recovery message.
 - The default mastery `guess` parameter is 0.08 rather than the spec’s suggested 0.20 so a fully correct, rubric-complete Backpropagation retrieval can cross the judged mastered threshold from the curated starting state. Probabilities remain clamped and one incorrect response cannot collapse mastery to zero.
-- No live GPT request was made, so account-specific GPT-5.6 availability remains unverified.
+- No live GPT request was made, so account-specific GPT-5.6 availability and billing remain unverified; server error/fallback contracts are covered deterministically.
 - No Figma file was mutated because the request provided no Figma file or project target; Figma plugin constraints were used to avoid inventing an external design target.
+- No GitHub remote was created or changed because the GitHub connector found no existing Synapse repository and no destination/visibility was specified. The local `main` branch is committed and ready to publish.
 
 ## Environment variables
 
@@ -101,7 +101,7 @@ VITE_SIMULATE_API_FAILURE=false
 
 ## Deployment instructions
 
-1. Run `npm install` and all five required checks, including a successful `npm run test:e2e`.
+1. Run `npm install` and the five required checks; all five pass in the recorded local environment.
 2. Import the repository into Vercel with the Vite framework preset.
 3. Set server-only `OPENAI_API_KEY`; optionally set `OPENAI_MODEL` and `OPENAI_TIMEOUT_MS`.
 4. Deploy and verify both deterministic/no-key mode and configured GPT mode.
@@ -117,4 +117,3 @@ VITE_SIMULATE_API_FAILURE=false
 6. Select Vanishing Gradients, diagnose Repair Path, and start Chain Rule or the top-ranked prerequisite.
 7. Paste a short source in deterministic mode; explain local PDF extraction and optional server-side GPT-5.6 structured extraction.
 8. Open Session Summary and finish on the highest-risk next action.
-
