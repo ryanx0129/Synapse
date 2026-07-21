@@ -1,0 +1,62 @@
+[
+  {
+    "path": ".env.example",
+    "bytes": 330
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 3099
+  },
+  {
+    "path": "CODEX_MASTER_PROMPT.md",
+    "bytes": 8577
+  },
+  {
+    "path": "README_FIRST.md",
+    "bytes": 1944
+  },
+  {
+    "path": "docs/ACCEPTANCE_TESTS.md",
+    "bytes": 6272
+  },
+  {
+    "path": "docs/AI_CONTRACTS_AND_PROMPTS.md",
+    "bytes": 4712
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "bytes": 3195
+  },
+  {
+    "path": "docs/BUILD_CHECKLIST.md",
+    "bytes": 5739
+  },
+  {
+    "path": "docs/DATA_CONTRACTS.md",
+    "bytes": 4659
+  },
+  {
+    "path": "docs/DEMO_AND_SUBMISSION.md",
+    "bytes": 3334
+  },
+  {
+    "path": "docs/DESIGN_SYSTEM.md",
+    "bytes": 4998
+  },
+  {
+    "path": "docs/SOURCES.md",
+    "bytes": 1311
+  },
+  {
+    "path": "docs/SYNAPSE_BUILD_SPEC.md",
+    "bytes": 17157
+  },
+  {
+    "path": "schemas/synapse-graph.schema.json",
+    "bytes": 6502
+  },
+  {
+    "path": "seed/machineLearningPreset.json",
+    "bytes": 39343
+  }
+]

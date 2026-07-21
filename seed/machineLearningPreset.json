@@ -1,0 +1,1192 @@
+{
+  "schemaVersion": "1.0",
+  "id": "preset-machine-learning",
+  "title": "Machine Learning and Neural Networks",
+  "description": "A deterministic source-grounded demo graph covering optimization, neural networks, generalization, and evaluation.",
+  "domain": "Machine Learning",
+  "createdAt": "2026-07-21T00:00:00.000Z",
+  "clusters": [
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "description": "Objectives, inputs, and preprocessing."
+    },
+    {
+      "id": "calculus",
+      "label": "Calculus",
+      "description": "Derivative rules underlying learning."
+    },
+    {
+      "id": "optimization",
+      "label": "Optimization",
+      "description": "Algorithms and update behavior."
+    },
+    {
+      "id": "neural-networks",
+      "label": "Neural Networks",
+      "description": "Layered models and gradient propagation."
+    },
+    {
+      "id": "generalization",
+      "label": "Generalization",
+      "description": "Performance beyond the training set."
+    },
+    {
+      "id": "evaluation",
+      "label": "Evaluation",
+      "description": "Data splits, metrics, and model selection."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ml-loss-functions",
+      "label": "Loss Functions",
+      "cluster": "Foundations",
+      "summary": "A loss function quantifies the discrepancy between a model's prediction and the target, providing the objective optimized during training.",
+      "latex": "\\mathcal{L}(\\theta)=\\frac{1}{n}\\sum_{i=1}^{n}\\ell(f_\\theta(x_i),y_i)",
+      "difficulty": 0.35,
+      "importance": 0.95,
+      "initialMastery": 0.72,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p3-loss",
+          "page": 3,
+          "section": "2.1 Objective Functions",
+          "quote": "Training minimizes an empirical loss that measures prediction error over observed examples."
+        }
+      ],
+      "question": "What role does a loss function play during model training?",
+      "rubric": {
+        "requiredConcepts": [
+          "quantifies prediction error",
+          "optimization objective"
+        ],
+        "optionalConcepts": [
+          "parameters",
+          "training examples"
+        ],
+        "misconceptions": [
+          "it directly changes labels",
+          "it is only an evaluation metric after training"
+        ],
+        "acceptedKeywords": [
+          "error",
+          "objective",
+          "minimize",
+          "prediction"
+        ],
+        "referenceAnswer": "It measures prediction error and defines the objective the optimizer minimizes to update model parameters."
+      },
+      "tags": [
+        "objective",
+        "training"
+      ]
+    },
+    {
+      "id": "ml-gradient",
+      "label": "Gradients",
+      "cluster": "Optimization",
+      "summary": "A gradient is the vector of partial derivatives indicating the direction of steepest increase of a scalar objective.",
+      "latex": "\\nabla_\\theta \\mathcal{L}=\\left[\\frac{\\partial \\mathcal{L}}{\\partial \\theta_1},\\ldots,\\frac{\\partial \\mathcal{L}}{\\partial \\theta_d}\\right]",
+      "difficulty": 0.4,
+      "importance": 0.92,
+      "initialMastery": 0.62,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p4-gradient",
+          "page": 4,
+          "section": "2.2 Gradients",
+          "quote": "The gradient collects partial derivatives and points toward the steepest local increase of the loss."
+        }
+      ],
+      "question": "What information does the gradient provide about a loss function?",
+      "rubric": {
+        "requiredConcepts": [
+          "partial derivatives",
+          "direction of steepest increase"
+        ],
+        "optionalConcepts": [
+          "magnitude",
+          "parameters"
+        ],
+        "misconceptions": [
+          "it always points to the global minimum"
+        ],
+        "acceptedKeywords": [
+          "partial derivative",
+          "steepest",
+          "direction",
+          "increase"
+        ],
+        "referenceAnswer": "The gradient contains partial derivatives with respect to parameters and points in the direction of steepest local increase."
+      },
+      "tags": [
+        "calculus",
+        "optimization"
+      ]
+    },
+    {
+      "id": "ml-gradient-descent",
+      "label": "Gradient Descent",
+      "cluster": "Optimization",
+      "summary": "Gradient descent iteratively updates parameters opposite the loss gradient to reduce the objective.",
+      "latex": "\\theta_{t+1}=\\theta_t-\\eta\\nabla_\\theta\\mathcal{L}(\\theta_t)",
+      "difficulty": 0.45,
+      "importance": 0.98,
+      "initialMastery": 0.82,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p4-gd",
+          "page": 4,
+          "section": "2.3 Gradient Descent",
+          "quote": "Parameters are moved opposite the gradient, scaled by a learning rate, to decrease the loss."
+        }
+      ],
+      "question": "Why does gradient descent subtract the gradient from the current parameters?",
+      "rubric": {
+        "requiredConcepts": [
+          "gradient points toward increase",
+          "subtracting moves toward lower loss"
+        ],
+        "optionalConcepts": [
+          "learning rate",
+          "local"
+        ],
+        "misconceptions": [
+          "the gradient directly gives the global minimum"
+        ],
+        "acceptedKeywords": [
+          "opposite",
+          "decrease",
+          "loss",
+          "learning rate"
+        ],
+        "referenceAnswer": "Because the gradient points toward steepest local increase, subtracting it moves parameters toward lower loss."
+      },
+      "tags": [
+        "optimizer",
+        "learning-rate"
+      ]
+    },
+    {
+      "id": "ml-learning-rate",
+      "label": "Learning Rate",
+      "cluster": "Optimization",
+      "summary": "The learning rate controls the step size of parameter updates and trades off speed against stability.",
+      "latex": "\\Delta\\theta=-\\eta\\nabla_\\theta\\mathcal{L}",
+      "difficulty": 0.35,
+      "importance": 0.9,
+      "initialMastery": 0.52,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p5-lr",
+          "page": 5,
+          "section": "2.4 Learning Rate",
+          "quote": "A step size that is too large may diverge, while one that is too small can make optimization slow."
+        }
+      ],
+      "question": "What can happen when the learning rate is too large or too small?",
+      "rubric": {
+        "requiredConcepts": [
+          "too large can overshoot or diverge",
+          "too small learns slowly"
+        ],
+        "optionalConcepts": [
+          "stability",
+          "convergence"
+        ],
+        "misconceptions": [
+          "a larger learning rate is always better"
+        ],
+        "acceptedKeywords": [
+          "overshoot",
+          "diverge",
+          "slow",
+          "step size"
+        ],
+        "referenceAnswer": "A learning rate that is too large can overshoot or diverge, while one that is too small makes convergence slow."
+      },
+      "tags": [
+        "hyperparameter",
+        "optimization"
+      ]
+    },
+    {
+      "id": "ml-chain-rule",
+      "label": "Chain Rule",
+      "cluster": "Calculus",
+      "summary": "The chain rule differentiates compositions by multiplying derivatives along the dependency path.",
+      "latex": "\\frac{d}{dx}f(g(x))=f'(g(x))g'(x)",
+      "difficulty": 0.5,
+      "importance": 0.94,
+      "initialMastery": 0.32,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p8-chain",
+          "page": 8,
+          "section": "3.1 Chain Rule",
+          "quote": "Derivatives through composed functions are products of local derivatives along the computation."
+        }
+      ],
+      "question": "Why is the chain rule essential for training multilayer neural networks?",
+      "rubric": {
+        "requiredConcepts": [
+          "network is a composition of functions",
+          "propagates derivatives through layers"
+        ],
+        "optionalConcepts": [
+          "local derivatives",
+          "gradient"
+        ],
+        "misconceptions": [
+          "it updates weights without derivatives"
+        ],
+        "acceptedKeywords": [
+          "composition",
+          "layers",
+          "derivative",
+          "propagate"
+        ],
+        "referenceAnswer": "A neural network composes many functions, so the chain rule propagates derivatives through each layer to compute parameter gradients."
+      },
+      "tags": [
+        "calculus",
+        "backpropagation"
+      ]
+    },
+    {
+      "id": "ml-computational-graph",
+      "label": "Computational Graphs",
+      "cluster": "Neural Networks",
+      "summary": "A computational graph represents operations and dependencies, enabling systematic forward evaluation and reverse differentiation.",
+      "difficulty": 0.48,
+      "importance": 0.86,
+      "initialMastery": 0.42,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p9-compgraph",
+          "page": 9,
+          "section": "3.2 Computational Graphs",
+          "quote": "Operations become nodes and values flow along edges, making dependencies explicit for differentiation."
+        }
+      ],
+      "question": "How does a computational graph help calculate neural-network gradients?",
+      "rubric": {
+        "requiredConcepts": [
+          "represents operations and dependencies",
+          "supports reverse traversal or differentiation"
+        ],
+        "optionalConcepts": [
+          "intermediate values",
+          "chain rule"
+        ],
+        "misconceptions": [
+          "it is only a visualization and has no role in differentiation"
+        ],
+        "acceptedKeywords": [
+          "operations",
+          "dependencies",
+          "reverse",
+          "gradient"
+        ],
+        "referenceAnswer": "It records operations and dependencies so reverse traversal can combine local derivatives using the chain rule."
+      },
+      "tags": [
+        "autodiff",
+        "graph"
+      ]
+    },
+    {
+      "id": "ml-backpropagation",
+      "label": "Backpropagation",
+      "cluster": "Neural Networks",
+      "summary": "Backpropagation efficiently computes loss gradients by applying reverse-mode differentiation through the network.",
+      "latex": "\\frac{\\partial L}{\\partial w_{ij}}=\\frac{\\partial L}{\\partial a_j}\\frac{\\partial a_j}{\\partial z_j}\\frac{\\partial z_j}{\\partial w_{ij}}",
+      "difficulty": 0.62,
+      "importance": 1.0,
+      "initialMastery": 0.28,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p12-backprop",
+          "page": 12,
+          "section": "3.4 Backpropagation",
+          "quote": "Backpropagation reuses intermediate derivatives while moving backward from the loss to each parameter."
+        }
+      ],
+      "question": "Which calculus rule enables gradients to propagate backward through hidden neural layers, and how?",
+      "rubric": {
+        "requiredConcepts": [
+          "chain rule",
+          "multiply or compose local derivatives through layers"
+        ],
+        "optionalConcepts": [
+          "reverse mode",
+          "loss gradient"
+        ],
+        "misconceptions": [
+          "backpropagation is the same as gradient descent",
+          "it sends predictions backward"
+        ],
+        "acceptedKeywords": [
+          "chain rule",
+          "local derivatives",
+          "layers",
+          "gradient"
+        ],
+        "referenceAnswer": "The chain rule composes local derivatives backward from the loss through each layer, yielding gradients for the weights."
+      },
+      "tags": [
+        "neural-network",
+        "gradient"
+      ]
+    },
+    {
+      "id": "ml-activation-functions",
+      "label": "Activation Functions",
+      "cluster": "Neural Networks",
+      "summary": "Activation functions introduce nonlinearity, allowing layered networks to represent nonlinear mappings.",
+      "latex": "a=\\sigma(z)",
+      "difficulty": 0.38,
+      "importance": 0.88,
+      "initialMastery": 0.66,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p10-act",
+          "page": 10,
+          "section": "3.3 Activations",
+          "quote": "Without nonlinear activation functions, stacked linear layers collapse to a single linear transformation."
+        }
+      ],
+      "question": "Why are nonlinear activation functions needed between neural-network layers?",
+      "rubric": {
+        "requiredConcepts": [
+          "introduce nonlinearity",
+          "enable nonlinear functions or decision boundaries"
+        ],
+        "optionalConcepts": [
+          "stacked linear layers collapse"
+        ],
+        "misconceptions": [
+          "they are used only to normalize inputs"
+        ],
+        "acceptedKeywords": [
+          "nonlinear",
+          "represent",
+          "decision boundary"
+        ],
+        "referenceAnswer": "They introduce nonlinearity; otherwise multiple linear layers are equivalent to one linear transformation."
+      },
+      "tags": [
+        "relu",
+        "nonlinearity"
+      ]
+    },
+    {
+      "id": "ml-vanishing-gradients",
+      "label": "Vanishing Gradients",
+      "cluster": "Neural Networks",
+      "summary": "Gradients can shrink through many layers, causing early layers to learn very slowly.",
+      "difficulty": 0.62,
+      "importance": 0.84,
+      "initialMastery": 0.24,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p14-vanish",
+          "page": 14,
+          "section": "3.6 Gradient Pathologies",
+          "quote": "Repeated multiplication by small derivatives can make gradients reaching early layers negligibly small."
+        }
+      ],
+      "question": "What mechanism causes vanishing gradients in deep networks?",
+      "rubric": {
+        "requiredConcepts": [
+          "repeated chain-rule multiplication",
+          "small derivatives shrink gradient"
+        ],
+        "optionalConcepts": [
+          "early layers learn slowly",
+          "sigmoid"
+        ],
+        "misconceptions": [
+          "the learning rate alone creates all vanishing gradients"
+        ],
+        "acceptedKeywords": [
+          "multiply",
+          "small derivative",
+          "shrink",
+          "deep"
+        ],
+        "referenceAnswer": "Repeated chain-rule multiplication by derivatives smaller than one shrinks gradients as they travel to earlier layers."
+      },
+      "tags": [
+        "deep-learning",
+        "optimization"
+      ]
+    },
+    {
+      "id": "ml-mini-batch",
+      "label": "Mini-Batch Training",
+      "cluster": "Optimization",
+      "summary": "Mini-batch training estimates gradients from subsets of data, balancing computational efficiency and gradient noise.",
+      "difficulty": 0.38,
+      "importance": 0.8,
+      "initialMastery": 0.58,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p6-batch",
+          "page": 6,
+          "section": "2.5 Mini-Batches",
+          "quote": "A mini-batch provides a noisy but efficient estimate of the full-data gradient."
+        }
+      ],
+      "question": "Why are mini-batches commonly used instead of the full dataset for every update?",
+      "rubric": {
+        "requiredConcepts": [
+          "computational efficiency",
+          "approximate or noisy gradient"
+        ],
+        "optionalConcepts": [
+          "memory",
+          "frequent updates"
+        ],
+        "misconceptions": [
+          "mini-batches always produce the exact full gradient"
+        ],
+        "acceptedKeywords": [
+          "efficient",
+          "subset",
+          "noisy",
+          "memory"
+        ],
+        "referenceAnswer": "They reduce computation and memory per update while providing a useful noisy estimate of the full gradient."
+      },
+      "tags": [
+        "sgd",
+        "training"
+      ]
+    },
+    {
+      "id": "ml-train-validation-test",
+      "label": "Train/Validation/Test Split",
+      "cluster": "Evaluation",
+      "summary": "Separate datasets support fitting, model selection, and unbiased final evaluation.",
+      "difficulty": 0.34,
+      "importance": 0.94,
+      "initialMastery": 0.76,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p18-split",
+          "page": 18,
+          "section": "4.1 Data Splits",
+          "quote": "Training data fits parameters, validation data guides choices, and test data estimates final generalization."
+        }
+      ],
+      "question": "What distinct purpose does each of the train, validation, and test sets serve?",
+      "rubric": {
+        "requiredConcepts": [
+          "train fits parameters",
+          "validation selects or tunes",
+          "test gives final unbiased evaluation"
+        ],
+        "optionalConcepts": [
+          "generalization"
+        ],
+        "misconceptions": [
+          "the test set should be repeatedly used for tuning"
+        ],
+        "acceptedKeywords": [
+          "fit",
+          "tune",
+          "final",
+          "unbiased"
+        ],
+        "referenceAnswer": "Training fits parameters, validation guides model and hyperparameter choices, and the test set provides the final unbiased estimate."
+      },
+      "tags": [
+        "evaluation",
+        "data"
+      ]
+    },
+    {
+      "id": "ml-overfitting",
+      "label": "Overfitting",
+      "cluster": "Generalization",
+      "summary": "Overfitting occurs when a model captures training-specific noise and performs worse on unseen data.",
+      "difficulty": 0.4,
+      "importance": 0.96,
+      "initialMastery": 0.46,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p19-overfit",
+          "page": 19,
+          "section": "4.2 Overfitting",
+          "quote": "A model may achieve low training error while failing to generalize because it fits idiosyncrasies of the training sample."
+        }
+      ],
+      "question": "How can a model have low training error but still be overfitted?",
+      "rubric": {
+        "requiredConcepts": [
+          "fits training-specific noise or details",
+          "poor unseen-data performance"
+        ],
+        "optionalConcepts": [
+          "generalization gap"
+        ],
+        "misconceptions": [
+          "low training error proves the model is good"
+        ],
+        "acceptedKeywords": [
+          "noise",
+          "training",
+          "unseen",
+          "generalize"
+        ],
+        "referenceAnswer": "It can memorize noise or sample-specific patterns, yielding low training error but poor performance on unseen data."
+      },
+      "tags": [
+        "generalization",
+        "bias-variance"
+      ]
+    },
+    {
+      "id": "ml-regularization",
+      "label": "Regularization",
+      "cluster": "Generalization",
+      "summary": "Regularization discourages overly complex solutions to improve generalization.",
+      "latex": "\\mathcal{L}_{reg}=\\mathcal{L}+\\lambda\\lVert\\theta\\rVert_2^2",
+      "difficulty": 0.47,
+      "importance": 0.88,
+      "initialMastery": 0.36,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p20-reg",
+          "page": 20,
+          "section": "4.3 Regularization",
+          "quote": "A complexity penalty can discourage parameter configurations that fit noise."
+        }
+      ],
+      "question": "How can regularization reduce overfitting?",
+      "rubric": {
+        "requiredConcepts": [
+          "penalizes or constrains complexity",
+          "reduces fitting of noise and improves generalization"
+        ],
+        "optionalConcepts": [
+          "L2",
+          "lambda"
+        ],
+        "misconceptions": [
+          "regularization always lowers both training and test error"
+        ],
+        "acceptedKeywords": [
+          "penalty",
+          "complexity",
+          "noise",
+          "generalization"
+        ],
+        "referenceAnswer": "It penalizes overly complex parameter settings, discouraging noise fitting and often improving generalization."
+      },
+      "tags": [
+        "l2",
+        "generalization"
+      ]
+    },
+    {
+      "id": "ml-bias-variance",
+      "label": "Bias–Variance Tradeoff",
+      "cluster": "Generalization",
+      "summary": "Prediction error reflects a balance between systematic underfitting and sensitivity to training-sample variation.",
+      "difficulty": 0.58,
+      "importance": 0.88,
+      "initialMastery": 0.34,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p21-bv",
+          "page": 21,
+          "section": "4.4 Bias and Variance",
+          "quote": "Simple models may have high bias, while highly flexible models may have high variance."
+        }
+      ],
+      "question": "What do high bias and high variance respectively imply about model behavior?",
+      "rubric": {
+        "requiredConcepts": [
+          "high bias means systematic underfitting",
+          "high variance means sensitivity or overfitting"
+        ],
+        "optionalConcepts": [
+          "model complexity"
+        ],
+        "misconceptions": [
+          "bias means social bias in this mathematical context"
+        ],
+        "acceptedKeywords": [
+          "underfit",
+          "overfit",
+          "sensitive",
+          "complexity"
+        ],
+        "referenceAnswer": "High bias indicates systematic underfitting, while high variance indicates excessive sensitivity to training data and overfitting."
+      },
+      "tags": [
+        "generalization",
+        "complexity"
+      ]
+    },
+    {
+      "id": "ml-cross-validation",
+      "label": "Cross-Validation",
+      "cluster": "Evaluation",
+      "summary": "Cross-validation repeatedly partitions training data to estimate model-selection performance more robustly.",
+      "difficulty": 0.44,
+      "importance": 0.76,
+      "initialMastery": 0.44,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p22-cv",
+          "page": 22,
+          "section": "4.5 Cross-Validation",
+          "quote": "K-fold cross-validation rotates held-out folds to reduce dependence on one validation split."
+        }
+      ],
+      "question": "Why can k-fold cross-validation be more reliable than one validation split?",
+      "rubric": {
+        "requiredConcepts": [
+          "uses multiple partitions",
+          "reduces dependence on one split"
+        ],
+        "optionalConcepts": [
+          "averages performance",
+          "data efficiency"
+        ],
+        "misconceptions": [
+          "it replaces the final test set"
+        ],
+        "acceptedKeywords": [
+          "fold",
+          "multiple",
+          "average",
+          "split"
+        ],
+        "referenceAnswer": "It evaluates across multiple train/validation partitions and averages results, reducing dependence on a single split."
+      },
+      "tags": [
+        "evaluation",
+        "model-selection"
+      ]
+    },
+    {
+      "id": "ml-confusion-matrix",
+      "label": "Confusion Matrix",
+      "cluster": "Evaluation",
+      "summary": "A confusion matrix counts predicted versus actual classes and supports class-specific error metrics.",
+      "difficulty": 0.36,
+      "importance": 0.75,
+      "initialMastery": 0.68,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p24-cm",
+          "page": 24,
+          "section": "5.1 Classification Evaluation",
+          "quote": "True positives, false positives, true negatives, and false negatives reveal different classification errors."
+        }
+      ],
+      "question": "What information does a binary confusion matrix provide beyond accuracy?",
+      "rubric": {
+        "requiredConcepts": [
+          "counts true/false positives and negatives",
+          "distinguishes error types"
+        ],
+        "optionalConcepts": [
+          "precision",
+          "recall"
+        ],
+        "misconceptions": [
+          "it contains only one accuracy value"
+        ],
+        "acceptedKeywords": [
+          "true positive",
+          "false positive",
+          "false negative",
+          "error"
+        ],
+        "referenceAnswer": "It separates true and false positives and negatives, revealing the types of classification errors hidden by overall accuracy."
+      },
+      "tags": [
+        "classification",
+        "metrics"
+      ]
+    },
+    {
+      "id": "ml-precision-recall",
+      "label": "Precision and Recall",
+      "cluster": "Evaluation",
+      "summary": "Precision measures correctness among positive predictions; recall measures coverage of actual positives.",
+      "latex": "\\mathrm{Precision}=\\frac{TP}{TP+FP},\\quad\\mathrm{Recall}=\\frac{TP}{TP+FN}",
+      "difficulty": 0.43,
+      "importance": 0.84,
+      "initialMastery": 0.48,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p25-pr",
+          "page": 25,
+          "section": "5.2 Precision and Recall",
+          "quote": "Precision penalizes false alarms, whereas recall penalizes missed positive cases."
+        }
+      ],
+      "question": "How do precision and recall differ in the errors they emphasize?",
+      "rubric": {
+        "requiredConcepts": [
+          "precision emphasizes false positives",
+          "recall emphasizes false negatives"
+        ],
+        "optionalConcepts": [
+          "positive predictions",
+          "actual positives"
+        ],
+        "misconceptions": [
+          "precision and recall are identical"
+        ],
+        "acceptedKeywords": [
+          "false positive",
+          "false negative",
+          "predicted positive",
+          "actual positive"
+        ],
+        "referenceAnswer": "Precision falls with false positives, while recall falls with false negatives."
+      },
+      "tags": [
+        "classification",
+        "metrics"
+      ]
+    },
+    {
+      "id": "ml-data-leakage",
+      "label": "Data Leakage",
+      "cluster": "Evaluation",
+      "summary": "Data leakage occurs when training or preprocessing uses information unavailable at real prediction time.",
+      "difficulty": 0.55,
+      "importance": 0.92,
+      "initialMastery": 0.22,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p27-leak",
+          "page": 27,
+          "section": "5.4 Leakage",
+          "quote": "Using test-derived statistics during preprocessing contaminates evaluation and produces optimistic results."
+        }
+      ],
+      "question": "Why does fitting preprocessing on the full dataset before splitting create leakage?",
+      "rubric": {
+        "requiredConcepts": [
+          "test information influences training",
+          "evaluation becomes optimistically biased"
+        ],
+        "optionalConcepts": [
+          "fit preprocessing on training only"
+        ],
+        "misconceptions": [
+          "preprocessing cannot leak information"
+        ],
+        "acceptedKeywords": [
+          "test information",
+          "contaminate",
+          "optimistic",
+          "training only"
+        ],
+        "referenceAnswer": "Statistics from validation or test examples influence training transformations, contaminating evaluation and making results overly optimistic."
+      },
+      "tags": [
+        "evaluation",
+        "pipeline"
+      ]
+    },
+    {
+      "id": "ml-feature-scaling",
+      "label": "Feature Scaling",
+      "cluster": "Foundations",
+      "summary": "Feature scaling puts numerical inputs on comparable scales, often improving optimization behavior.",
+      "latex": "x'=\\frac{x-\\mu}{\\sigma}",
+      "difficulty": 0.3,
+      "importance": 0.7,
+      "initialMastery": 0.61,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p2-scale",
+          "page": 2,
+          "section": "1.3 Preprocessing",
+          "quote": "Standardization prevents large-scale features from dominating gradient-based updates solely because of their units."
+        }
+      ],
+      "question": "Why can feature scaling improve gradient-based optimization?",
+      "rubric": {
+        "requiredConcepts": [
+          "features become comparable in scale",
+          "optimization is better conditioned or not dominated by units"
+        ],
+        "optionalConcepts": [
+          "faster convergence"
+        ],
+        "misconceptions": [
+          "scaling adds new information"
+        ],
+        "acceptedKeywords": [
+          "comparable",
+          "dominate",
+          "convergence",
+          "condition"
+        ],
+        "referenceAnswer": "It prevents differently scaled units from dominating updates and can make the optimization geometry better conditioned."
+      },
+      "tags": [
+        "preprocessing",
+        "optimization"
+      ]
+    },
+    {
+      "id": "ml-hyperparameters",
+      "label": "Hyperparameter Tuning",
+      "cluster": "Evaluation",
+      "summary": "Hyperparameters are chosen outside gradient-based parameter fitting and should be selected using validation evidence.",
+      "difficulty": 0.42,
+      "importance": 0.8,
+      "initialMastery": 0.38,
+      "sourceSpans": [
+        {
+          "sourceId": "preset-p23-hp",
+          "page": 23,
+          "section": "4.6 Hyperparameters",
+          "quote": "Learning rate, regularization strength, and architecture choices are selected using validation performance rather than the final test set."
+        }
+      ],
+      "question": "Why should hyperparameters be selected using validation data rather than the test set?",
+      "rubric": {
+        "requiredConcepts": [
+          "validation supports selection",
+          "test must remain unbiased final evaluation"
+        ],
+        "optionalConcepts": [
+          "repeated tuning overfits the test set"
+        ],
+        "misconceptions": [
+          "test data should guide every model choice"
+        ],
+        "acceptedKeywords": [
+          "validation",
+          "select",
+          "test",
+          "unbiased"
+        ],
+        "referenceAnswer": "Validation data guides choices while preserving the test set as an unbiased final estimate; tuning on the test set leaks evaluation information."
+      },
+      "tags": [
+        "model-selection",
+        "evaluation"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "id": "ml-link-01",
+      "source": "ml-loss-functions",
+      "target": "ml-gradient",
+      "type": "derived_from",
+      "label": "defines derivatives for",
+      "explanation": "Defines derivatives for.",
+      "confidence": 0.9,
+      "prerequisiteWeight": 0.2,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-02",
+      "source": "ml-gradient",
+      "target": "ml-gradient-descent",
+      "type": "prerequisite",
+      "label": "guides update direction",
+      "explanation": "Guides update direction.",
+      "confidence": 0.98,
+      "prerequisiteWeight": 0.85,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-03",
+      "source": "ml-learning-rate",
+      "target": "ml-gradient-descent",
+      "type": "prerequisite",
+      "label": "controls update size",
+      "explanation": "Controls update size.",
+      "confidence": 0.98,
+      "prerequisiteWeight": 0.75,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-04",
+      "source": "ml-chain-rule",
+      "target": "ml-computational-graph",
+      "type": "prerequisite",
+      "label": "differentiates compositions",
+      "explanation": "Differentiates compositions.",
+      "confidence": 0.9,
+      "prerequisiteWeight": 0.7,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-05",
+      "source": "ml-computational-graph",
+      "target": "ml-backpropagation",
+      "type": "prerequisite",
+      "label": "organizes reverse differentiation",
+      "explanation": "Organizes reverse differentiation.",
+      "confidence": 0.96,
+      "prerequisiteWeight": 0.8,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-06",
+      "source": "ml-chain-rule",
+      "target": "ml-backpropagation",
+      "type": "prerequisite",
+      "label": "propagates local derivatives",
+      "explanation": "Propagates local derivatives.",
+      "confidence": 0.99,
+      "prerequisiteWeight": 1.0,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-07",
+      "source": "ml-activation-functions",
+      "target": "ml-backpropagation",
+      "type": "prerequisite",
+      "label": "contributes local derivatives",
+      "explanation": "Contributes local derivatives.",
+      "confidence": 0.9,
+      "prerequisiteWeight": 0.7,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-08",
+      "source": "ml-backpropagation",
+      "target": "ml-gradient-descent",
+      "type": "applies_to",
+      "label": "computes parameter gradients",
+      "explanation": "Computes parameter gradients.",
+      "confidence": 0.96,
+      "prerequisiteWeight": 0.5,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-09",
+      "source": "ml-chain-rule",
+      "target": "ml-vanishing-gradients",
+      "type": "prerequisite",
+      "label": "explains repeated derivative products",
+      "explanation": "Explains repeated derivative products.",
+      "confidence": 0.96,
+      "prerequisiteWeight": 0.85,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-10",
+      "source": "ml-activation-functions",
+      "target": "ml-vanishing-gradients",
+      "type": "causes",
+      "label": "small derivatives can shrink signals",
+      "explanation": "Small derivatives can shrink signals.",
+      "confidence": 0.85,
+      "prerequisiteWeight": 0.7,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-11",
+      "source": "ml-backpropagation",
+      "target": "ml-vanishing-gradients",
+      "type": "prerequisite",
+      "label": "reveals backward gradient flow",
+      "explanation": "Reveals backward gradient flow.",
+      "confidence": 0.88,
+      "prerequisiteWeight": 0.7,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-12",
+      "source": "ml-mini-batch",
+      "target": "ml-gradient-descent",
+      "type": "applies_to",
+      "label": "provides stochastic estimates",
+      "explanation": "Provides stochastic estimates.",
+      "confidence": 0.9,
+      "prerequisiteWeight": 0.35,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-13",
+      "source": "ml-feature-scaling",
+      "target": "ml-gradient-descent",
+      "type": "prerequisite",
+      "label": "improves conditioning",
+      "explanation": "Improves conditioning.",
+      "confidence": 0.82,
+      "prerequisiteWeight": 0.45,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-14",
+      "source": "ml-train-validation-test",
+      "target": "ml-overfitting",
+      "type": "prerequisite",
+      "label": "reveals generalization gap",
+      "explanation": "Reveals generalization gap.",
+      "confidence": 0.92,
+      "prerequisiteWeight": 0.75,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-15",
+      "source": "ml-overfitting",
+      "target": "ml-regularization",
+      "type": "causes",
+      "label": "motivates complexity control",
+      "explanation": "Motivates complexity control.",
+      "confidence": 0.95,
+      "prerequisiteWeight": 0.6,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-16",
+      "source": "ml-bias-variance",
+      "target": "ml-overfitting",
+      "type": "prerequisite",
+      "label": "explains high-variance behavior",
+      "explanation": "Explains high-variance behavior.",
+      "confidence": 0.88,
+      "prerequisiteWeight": 0.65,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-17",
+      "source": "ml-train-validation-test",
+      "target": "ml-cross-validation",
+      "type": "prerequisite",
+      "label": "defines validation purpose",
+      "explanation": "Defines validation purpose.",
+      "confidence": 0.86,
+      "prerequisiteWeight": 0.55,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-18",
+      "source": "ml-cross-validation",
+      "target": "ml-hyperparameters",
+      "type": "applies_to",
+      "label": "estimates selection performance",
+      "explanation": "Estimates selection performance.",
+      "confidence": 0.92,
+      "prerequisiteWeight": 0.55,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-19",
+      "source": "ml-train-validation-test",
+      "target": "ml-hyperparameters",
+      "type": "prerequisite",
+      "label": "separates selection and final test",
+      "explanation": "Separates selection and final test.",
+      "confidence": 0.97,
+      "prerequisiteWeight": 0.8,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-20",
+      "source": "ml-confusion-matrix",
+      "target": "ml-precision-recall",
+      "type": "prerequisite",
+      "label": "provides TP FP FN counts",
+      "explanation": "Provides tp fp fn counts.",
+      "confidence": 0.99,
+      "prerequisiteWeight": 0.9,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-21",
+      "source": "ml-train-validation-test",
+      "target": "ml-data-leakage",
+      "type": "prerequisite",
+      "label": "establishes isolation boundaries",
+      "explanation": "Establishes isolation boundaries.",
+      "confidence": 0.92,
+      "prerequisiteWeight": 0.75,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-22",
+      "source": "ml-data-leakage",
+      "target": "ml-hyperparameters",
+      "type": "contrasts_with",
+      "label": "invalidates selection when test leaks",
+      "explanation": "Invalidates selection when test leaks.",
+      "confidence": 0.85,
+      "prerequisiteWeight": 0.3,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-23",
+      "source": "ml-regularization",
+      "target": "ml-bias-variance",
+      "type": "applies_to",
+      "label": "trades variance for bias",
+      "explanation": "Trades variance for bias.",
+      "confidence": 0.86,
+      "prerequisiteWeight": 0.45,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-24",
+      "source": "ml-loss-functions",
+      "target": "ml-backpropagation",
+      "type": "prerequisite",
+      "label": "provides terminal objective",
+      "explanation": "Provides terminal objective.",
+      "confidence": 0.94,
+      "prerequisiteWeight": 0.75,
+      "affectsMasteryPropagation": true,
+      "sourceSpans": []
+    },
+    {
+      "id": "ml-link-25",
+      "source": "ml-gradient-descent",
+      "target": "ml-learning-rate",
+      "type": "part_of",
+      "label": "uses learning-rate hyperparameter",
+      "explanation": "Uses learning-rate hyperparameter.",
+      "confidence": 0.9,
+      "prerequisiteWeight": 0.15,
+      "affectsMasteryPropagation": false,
+      "sourceSpans": []
+    }
+  ],
+  "warnings": [
+    "Preset citations refer to a bundled synthetic chapter used solely for deterministic demonstration."
+  ]
+}
