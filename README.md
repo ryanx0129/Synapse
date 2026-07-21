@@ -64,12 +64,6 @@ The graph is not decoration around a summary. It is the shared structure used fo
 
 The complete deterministic study loop runs locally without an API key. GPT-5.6 is the configurable default for the optional server-side AI routes and has not been represented as a required or live-verified dependency.
 
-## Visual walkthrough
-
-The application has been visually checked at desktop and mobile widths, but public README screenshots are not yet committed. The exact capture states, filenames, dimensions, and accessibility requirements are documented in [the README asset checklist](docs/assets/README_ASSET_CHECKLIST.md).
-
-No placeholder or unverified screenshot is embedded here.
-
 ## Why Synapse is different
 
 | Common study tool   | What it usually models               | What Synapse adds                                                          |
@@ -251,7 +245,7 @@ Recorded results from the verified local build on 2026-07-21:
 
 Coverage includes graph validation, dangling-link normalization, answer scoring, contradiction rejection, mastery bounds and thresholds, prerequisite risk, Repair Path validity, ingestion and page preservation, persistence serialization, UI behavior, API fallbacks, PDF upload, reload persistence, and simulated provider failure.
 
-See [the detailed build status](docs/BUILD_STATUS.md) for exact recorded command and browser results.
+Run the commands above to reproduce the automated checks on your local machine.
 
 ## Privacy and resilience
 
